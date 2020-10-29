@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     int i = 0;
     CheckBox op1, op2, op3, op4;
     TextView text;
-    int resultado = 0, auxiliar;
+    int resultado = 0;
     Button next;
 
     @Override
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*Elements initialization*/
         op1 = (CheckBox) findViewById(R.id.op1);
         op2 = (CheckBox) findViewById(R.id.op2);
         op3 = (CheckBox) findViewById(R.id.op3);
@@ -34,16 +35,17 @@ public class MainActivity extends AppCompatActivity {
         text = findViewById(R.id.pergunta);
         next= (Button) findViewById(R.id.next);
 
-        perguntas[0][0] = "Which of this anime are Shonnen?";
-        perguntas[1][0] = "\"Zanpakuto\" is a term used in which of this anime?";
-        perguntas[2][0] = "According to MAL, which of this anime is better rated?";
-        perguntas[3][0] = "Which of this characters are Main Characters?";
-        perguntas[4][0] = "Which of this anime were based on a Light Novel?";
-        perguntas[5][0] = "How many seasons does Attack on Titan have?";
-        perguntas[6][0] = "Normally, how many minutes does a episode have?";
-        perguntas[7][0] = "Goku is the Main Character of which anime?";
-        perguntas[8][0] = "The anime \"Naruto\" was made by which studio?";
-        perguntas[9][0] = "What is a Death Note?";
+        /*Question and answers matrix creation*/
+        perguntas[0][0] = getResources().getString(R.string.q1);
+        perguntas[1][0] = getResources().getString(R.string.q2);
+        perguntas[2][0] = getResources().getString(R.string.q3);
+        perguntas[3][0] = getResources().getString(R.string.q4);
+        perguntas[4][0] = getResources().getString(R.string.q5);
+        perguntas[5][0] = getResources().getString(R.string.q6);
+        perguntas[6][0] = getResources().getString(R.string.q7);
+        perguntas[7][0] = getResources().getString(R.string.q8);
+        perguntas[8][0] = getResources().getString(R.string.q9);
+        perguntas[9][0] = getResources().getString(R.string.q10);
 
         perguntas[0][1] = "Naruto";
         perguntas[1][1] = "Boku no Hero Academia";
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /* Onclick method for back button*/
     public void back(View view){
 
         op1.setVisibility(View.VISIBLE);
@@ -150,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*OnClick method for submit button*/
     public void submit(View view){
 
         switch(i){
@@ -181,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+     /*OnClick method for next button*/
     public void next(View view){
 
         i++;
@@ -189,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             next.setText("End");
 
          else if (i == 10) {
-            text.setText("End of the quiz!!");
+            text.setText("End of the quiz!! You did " +resultado+ " points!!");
             op1.setVisibility(View.INVISIBLE);
             op2.setVisibility(View.INVISIBLE);
             op3.setVisibility(View.INVISIBLE);
@@ -216,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 1*/
     public int resposta1 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -233,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 2*/
     public int resposta2 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -249,6 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 3*/
     public int resposta3 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -265,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 4*/
     public int resposta4 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -282,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 5*/
     public int resposta5 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -298,6 +308,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 6*/
     public int resposta6 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -314,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 7*/
     public int resposta7 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -330,6 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 8*/
     public int resposta8 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())
@@ -346,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 9*/
     public int resposta9 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op2.isChecked())
@@ -362,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*Method that gives correct answer to question 10*/
     public int resposta10 (CheckBox op1, CheckBox op2, CheckBox op3, CheckBox op4){
 
         if(op1.isChecked())

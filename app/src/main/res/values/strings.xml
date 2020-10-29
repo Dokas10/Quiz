@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="submit">Submit</string>
+    <string name="q1">Which of this anime are Shonnen?</string>
+    <string name="q2">"Zanpakuto" is a term used in which of this anime?</string>
+    <string name="q3">According to MAL, which of this anime is better rated?</string>
+    <string name="q4">Which of this characters are Main Characters?</string>
+    <string name="q5">Which of this anime were based on a Light Novel?</string>
+    <string name="q6">How many seasons does Attack on Titan have?</string>
+    <string name="q7">Normally, how many minutes does a episode have?</string>
+    <string name="q8">Goku is the Main Character of which anime?</string>
+    <string name="q9">The anime "Naruto" was made by which studio?</string>
+    <string name="q10">What is a Death Note?</string>
 </resources>

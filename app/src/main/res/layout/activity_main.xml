@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- Image style-->
         <ImageView
             android:id="@+id/image"
             android:layout_weight="0.8"
@@ -26,6 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- Question style-->
             <TextView
                 android:id="@+id/pergunta"
                 android:layout_width="match_parent"
@@ -37,45 +39,33 @@
                 android:text=""
                 android:textSize="20sp"/>
 
+            <!-- Option 1 CheckBox -->
             <CheckBox
+                style="@style/Checkbox"
                 android:id="@+id/op1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:paddingLeft="24dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"/>
+                android:layout_height="wrap_content" />
 
+            <!-- Option 2 CheckBox -->
             <CheckBox
+                style="@style/Checkbox"
                 android:id="@+id/op2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:paddingLeft="24dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"/>
+                android:layout_height="wrap_content"/>
 
+            <!-- Option 3 CheckBox -->
             <CheckBox
+                style="@style/Checkbox"
                 android:id="@+id/op3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:paddingLeft="24dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"/>
+                android:layout_height="wrap_content"/>
 
+            <!-- Option 4 CheckBox -->
             <CheckBox
+                style="@style/Checkbox"
                 android:id="@+id/op4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:paddingLeft="24dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"/>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -85,29 +75,29 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!-- Back Button -->
             <Button
-                android:layout_gravity="center"
-                android:layout_width="100dp"
+                style="@style/Button"
                 android:layout_marginLeft="10dp"
-                android:text="Back"
+                android:text="@string/back"
                 android:onClick="back"
                 android:layout_height="wrap_content"/>
 
+            <!-- Submit Button -->
             <Button
-                android:layout_gravity="center"
+                style="@style/Button"
                 android:layout_marginLeft="20dp"
-                android:layout_width="100dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:onClick="submit"
                 android:layout_height="wrap_content"/>
 
+            <!-- Next Button -->
             <Button
+                style="@style/Button"
                 android:id="@+id/next"
-                android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_width="100dp"
-                android:text="Next"
+                android:text="@string/next"
                 android:onClick="next"
                 android:layout_height="wrap_content"
                 android:clickable="false"/>
