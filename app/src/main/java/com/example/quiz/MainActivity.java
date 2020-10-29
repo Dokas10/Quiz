@@ -2,12 +2,16 @@ package com.example.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     int i = 0;
     CheckBox op1, op2, op3, op4;
     TextView text;
-    int resultado = 0;
+    int resultado = 0, auxiliar;
+    Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         op3 = (CheckBox) findViewById(R.id.op3);
         op4 = (CheckBox) findViewById(R.id.op4);
         text = findViewById(R.id.pergunta);
+        next= (Button) findViewById(R.id.next);
 
         perguntas[0][0] = "Which of this anime are Shonnen?";
         perguntas[1][0] = "\"Zanpakuto\" is a term used in which of this anime?";
@@ -75,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         perguntas[0][4] = "One Piece";
         perguntas[1][4] = "Rurouni Kenshin";
         perguntas[2][4] = "FullMetal Alchemist";
-        perguntas[3][4] = "Captain Kid";
+        perguntas[3][4] = "Trafalgar Law";
         perguntas[4][4] = "Bleach";
         perguntas[5][4] = "6";
         perguntas[6][4] = "24 minutes";
@@ -89,10 +95,59 @@ public class MainActivity extends AppCompatActivity {
         op3.setText(perguntas[0][3]);
         op4.setText(perguntas[0][4]);
 
+        next.setClickable(false);
+
     }
 
     public void back(View view){
-        //TODO
+
+        op1.setVisibility(View.VISIBLE);
+        op2.setVisibility(View.VISIBLE);
+        op3.setVisibility(View.VISIBLE);
+        op4.setVisibility(View.VISIBLE);
+        i--;
+
+        if(i == -1){
+            Toast toast = Toast.makeText(this, "Cannot go back!", Toast.LENGTH_SHORT);
+            toast.show();
+            i++;
+            return;
+        }
+
+        text.setText(perguntas[i][0]);
+        op1.setText(perguntas[i][1]);
+        op2.setText(perguntas[i][2]);
+        op3.setText(perguntas[i][3]);
+        op4.setText(perguntas[i][4]);
+
+        switch(i){
+
+            case 0: op1.setChecked(true);
+                op4.setChecked(true);
+                op1.setTextColor(Color.GREEN);
+                op4.setTextColor(Color.GREEN);
+                break;
+            case 1: case 5: case 9: op3.setChecked(true);
+                op3.setTextColor(Color.GREEN);
+                break;
+            case 2: case 6: op4.setChecked(true);
+                op4.setTextColor(Color.GREEN);;
+                break;
+            case 3: op1.setChecked(true);
+                op2.setChecked(true);
+                op3.setChecked(true);
+                op1.setTextColor(Color.GREEN);
+                op2.setTextColor(Color.GREEN);
+                op3.setTextColor(Color.GREEN);
+                break;
+            case 4: case 7:op2.setChecked(true);
+                op2.setTextColor(Color.GREEN);
+                break;
+            case 8: op1.setChecked(true);
+                op1.setTextColor(Color.GREEN);
+                break;
+
+        }
     }
 
     public void submit(View view){
@@ -122,13 +177,27 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //TODO: Ativar e desativar botões
+        next.setClickable(true);
+
     }
 
     public void next(View view){
 
-        //TODO: Condição de paragem e desativar botões
         i++;
+
+        if (i == 9)
+            next.setText("End");
+
+         else if (i == 10) {
+            text.setText("End of the quiz!!");
+            op1.setVisibility(View.INVISIBLE);
+            op2.setVisibility(View.INVISIBLE);
+            op3.setVisibility(View.INVISIBLE);
+            op4.setVisibility(View.INVISIBLE);
+            return;
+        } else if (i==11)
+            System.exit(0);
+
         text.setText(perguntas[i][0]);
         op1.setText(perguntas[i][1]);
         op1.setChecked(false);
@@ -142,6 +211,8 @@ public class MainActivity extends AppCompatActivity {
         op4.setText(perguntas[i][4]);
         op4.setChecked(false);
         op4.setTextColor(Color.WHITE);
+
+        next.setClickable(false);
 
     }
 
