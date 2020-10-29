@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Application;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String[][] perguntas = new String[10][5];
     int i = 0;
     CheckBox op1, op2, op3, op4;
+    ImageView image;
     TextView text;
     int resultado = 0;
     Button next;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         op2 = (CheckBox) findViewById(R.id.op2);
         op3 = (CheckBox) findViewById(R.id.op3);
         op4 = (CheckBox) findViewById(R.id.op4);
+        image = findViewById(R.id.image);
         text = findViewById(R.id.pergunta);
         next= (Button) findViewById(R.id.next);
 
