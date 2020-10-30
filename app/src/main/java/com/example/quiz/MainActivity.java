@@ -18,12 +18,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     String[][] perguntas = new String[10][5];
+    int[][] flags = new int[10][5];
     int i = 0;
     CheckBox op1, op2, op3, op4;
     ImageView image;
     TextView text;
     int resultado = 0;
-    Button next;
+    Button next, submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
         text = findViewById(R.id.pergunta);
         next= (Button) findViewById(R.id.next);
+        submit= (Button) findViewById(R.id.submit);
+
 
         /*Question and answers matrix creation*/
         perguntas[0][0] = getResources().getString(R.string.q1);
@@ -105,58 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /* Onclick method for back button*/
-    public void back(View view){
-
-        op1.setVisibility(View.VISIBLE);
-        op2.setVisibility(View.VISIBLE);
-        op3.setVisibility(View.VISIBLE);
-        op4.setVisibility(View.VISIBLE);
-        i--;
-
-        if(i == -1){
-            Toast toast = Toast.makeText(this, "Cannot go back!", Toast.LENGTH_SHORT);
-            toast.show();
-            i++;
-            return;
-        }
-
-        text.setText(perguntas[i][0]);
-        op1.setText(perguntas[i][1]);
-        op2.setText(perguntas[i][2]);
-        op3.setText(perguntas[i][3]);
-        op4.setText(perguntas[i][4]);
-
-        switch(i){
-
-            case 0: op1.setChecked(true);
-                op4.setChecked(true);
-                op1.setTextColor(Color.GREEN);
-                op4.setTextColor(Color.GREEN);
-                break;
-            case 1: case 5: case 9: op3.setChecked(true);
-                op3.setTextColor(Color.GREEN);
-                break;
-            case 2: case 6: op4.setChecked(true);
-                op4.setTextColor(Color.GREEN);;
-                break;
-            case 3: op1.setChecked(true);
-                op2.setChecked(true);
-                op3.setChecked(true);
-                op1.setTextColor(Color.GREEN);
-                op2.setTextColor(Color.GREEN);
-                op3.setTextColor(Color.GREEN);
-                break;
-            case 4: case 7:op2.setChecked(true);
-                op2.setTextColor(Color.GREEN);
-                break;
-            case 8: op1.setChecked(true);
-                op1.setTextColor(Color.GREEN);
-                break;
-
-        }
-    }
-
     /*OnClick method for submit button*/
     public void submit(View view){
 
@@ -186,11 +137,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         next.setClickable(true);
+        submit.setClickable(false);
 
     }
 
      /*OnClick method for next button*/
     public void next(View view){
+
+        submit.setClickable(true);
 
         i++;
 
@@ -210,16 +164,16 @@ public class MainActivity extends AppCompatActivity {
         text.setText(perguntas[i][0]);
         op1.setText(perguntas[i][1]);
         op1.setChecked(false);
-        op1.setTextColor(Color.WHITE);
+        op1.setTextColor(Color.BLACK);
         op2.setText(perguntas[i][2]);
         op2.setChecked(false);
-        op2.setTextColor(Color.WHITE);
+        op2.setTextColor(Color.BLACK);
         op3.setText(perguntas[i][3]);
         op3.setChecked(false);
-        op3.setTextColor(Color.WHITE);
+        op3.setTextColor(Color.BLACK);
         op4.setText(perguntas[i][4]);
         op4.setChecked(false);
-        op4.setTextColor(Color.WHITE);
+        op4.setTextColor(Color.BLACK);
 
         next.setClickable(false);
 
@@ -236,10 +190,9 @@ public class MainActivity extends AppCompatActivity {
             op3.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.GREEN);
-        if(op1.isChecked() && op4.isChecked())
+        if(op1.isChecked() && !op2.isChecked() && !op3.isChecked() && op4.isChecked())
             return 1;
-        else
-            return 0;
+        return 0;
 
     }
 
@@ -252,10 +205,10 @@ public class MainActivity extends AppCompatActivity {
             op2.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op3.isChecked()){
+        if(op3.isChecked())
             op3.setTextColor(Color.GREEN);
+        if(op3.isChecked() && !op1.isChecked() && !op2.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -269,10 +222,10 @@ public class MainActivity extends AppCompatActivity {
             op2.setTextColor(Color.RED);
         if(op3.isChecked())
             op3.setTextColor(Color.RED);
-        if(op4.isChecked()){
+        if(op4.isChecked())
             op4.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && !op2.isChecked() && !op3.isChecked() && op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -288,10 +241,9 @@ public class MainActivity extends AppCompatActivity {
             op3.setTextColor(Color.GREEN);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op1.isChecked() && op2.isChecked() && op3.isChecked())
+        if(op1.isChecked() && op2.isChecked() && op3.isChecked() && !op4.isChecked())
             return 1;
-        else
-            return 0;
+        return 0;
 
     }
 
@@ -304,10 +256,10 @@ public class MainActivity extends AppCompatActivity {
             op3.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op2.isChecked()){
+        if(op2.isChecked())
             op2.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && op2.isChecked() && !op3.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -321,10 +273,10 @@ public class MainActivity extends AppCompatActivity {
             op2.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op3.isChecked()){
+        if(op3.isChecked())
             op3.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && !op2.isChecked() && op3.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -338,10 +290,11 @@ public class MainActivity extends AppCompatActivity {
             op2.setTextColor(Color.RED);
         if(op3.isChecked())
             op3.setTextColor(Color.RED);
-        if(op4.isChecked()){
+        if(op4.isChecked())
             op4.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && !op2.isChecked() && !op3.isChecked() && op4.isChecked())
             return 1;
-        }
+
         return 0;
 
     }
@@ -355,10 +308,10 @@ public class MainActivity extends AppCompatActivity {
             op3.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op2.isChecked()){
+        if(op2.isChecked())
             op2.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && op2.isChecked() && !op3.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -372,10 +325,10 @@ public class MainActivity extends AppCompatActivity {
             op3.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op1.isChecked()){
+        if(op1.isChecked())
             op1.setTextColor(Color.GREEN);
+        if(op1.isChecked() && !op2.isChecked() && !op3.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
@@ -389,10 +342,10 @@ public class MainActivity extends AppCompatActivity {
             op2.setTextColor(Color.RED);
         if(op4.isChecked())
             op4.setTextColor(Color.RED);
-        if(op3.isChecked()){
+        if(op3.isChecked())
             op3.setTextColor(Color.GREEN);
+        if(!op1.isChecked() && !op2.isChecked() && op3.isChecked() && !op4.isChecked())
             return 1;
-        }
         return 0;
 
     }
